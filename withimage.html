@@ -8,45 +8,29 @@
       width:200px;
       height: 200px;
       overflow:hidden;
+      border-radius:15px;
       border:1px solid;
       position:relative;
       }
 
-      .gallery > div > div{
-      width:200px;
+      .gallery > div{
+      width:2200px;
       height: 200px;
-      background-image:url("slide.png");
-      position:absolute
-      float: left;
-      }
-      .gallery > div > div:nth-child(3n+2){
-      background-color: green;
-      }
-      .gallery > div > div:nth-child(3n+3){
-      background-color: blue;
-      }
-      .gallery > div {
+      left: 0px;
+      background-color:blue;
       position:absolute;
-      top:0;
-      left:0;
       }
     </style>
   </head>
   <body>
-    <div class="gallery"><div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <a href="test.html">
+    <div class="gallery"><div style="background-image:url('slide.png')">
       </div>
     </div>
-
+    </a>
+    <div class="gallery"><div style="background-image:url('slide.png')">
+      </div>
+    </div>
     <script>
       function relMouseCoords(event){
       var totalOffsetX = 0;
@@ -74,7 +58,7 @@
 		      _ref.addEventListener("mousemove", function(e){
 		      var x = parseInt(relMouseCoords.call(this,e).x, 10);
 		      x = Math.floor(x/200 * counts);
-		      this.firstChild.style.left = x * 200 + "px";
+		      this.firstChild.style.left = -x * 200 + "px";
 		      })
 		      }
 		      </script>
