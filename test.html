@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Beispielbla</title>
+    <style type="text/css">
+      .gallery{
+      width:400px;
+      height: 400px;
+      overflow:hidden;
+      border:1px solid;
+      position:relative;
+      }
+
+      .gallery > div > div{
+      width:400px;
+      height: 400px;
+      background-color:red;
+      float: left;
+      }
+      .gallery > div > div:nth-child(3n+2){
+      background-color: green;
+      }
+      .gallery > div > div:nth-child(3n+3){
+      background-color: blue;
+      }
+      .gallery > div {
+      position:absolute;
+      top:0;
+      left:0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery"><div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <script>
+      function relMouseCoords(event){
+      var totalOffsetX = 0;
+      var totalOffsetY = 0;
+      var canvasX = 0;
+      var canvasY = 0;
+      var currentElement = this;
+
+      do{
+      totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
+      totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
+      }
+      while(currentElement = currentElement.offsetParent)
+
+      canvasX = event.pageX - totalOffsetX;
+      canvasY = event.pageY - totalOffsetY;
+
+      return {x:canvasX, y:canvasY}
+      }
+
+      var galleries = document.getElementsByClassName("gallery"), i, _ref;
+      var counts = 10;
+      for(i = 0 ; i < galleries.length; i++){
+		      _ref = galleries[i];
+		      _ref.addEventListener("mousemove", function(e){
+		      var x = parseInt(relMouseCoords.call(this,e).x, 10);
+		      x = Math.floor(x/400 * counts);
+		      this.firstChild.style.left = -x * 400 + "px";
+		      })
+		      }
+		      </script>
+
+  </body>
+</html>
